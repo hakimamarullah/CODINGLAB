@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="advpro.uts.collections.binarytree.NodeTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-03-29T09:02:58" hostname="ALPHAONE" time="0.003">
-  <properties/>
-  <testcase name="getData()" classname="advpro.uts.collections.binarytree.NodeTest" time="0.001"/>
-  <testcase name="getLeft()" classname="advpro.uts.collections.binarytree.NodeTest" time="0.001"/>
-  <testcase name="getRight()" classname="advpro.uts.collections.binarytree.NodeTest" time="0.001"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
