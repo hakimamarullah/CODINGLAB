@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="advpro.uts.collections.binarytree.BinaryTreeTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2022-03-29T09:02:50" hostname="ALPHAONE" time="8.425">
+  <properties/>
+  <testcase name="removeWithOneChild()" classname="advpro.uts.collections.binarytree.BinaryTreeTest" time="0.025"/>
+  <testcase name="insert()" classname="advpro.uts.collections.binarytree.BinaryTreeTest" time="0.001"/>
+  <testcase name="findMax()" classname="advpro.uts.collections.binarytree.BinaryTreeTest" time="0.003"/>
+  <testcase name="findMin()" classname="advpro.uts.collections.binarytree.BinaryTreeTest" time="0.0"/>
+  <testcase name="searchShouldReturnTheNodeIfPresent()" classname="advpro.uts.collections.binarytree.BinaryTreeTest" time="8.18"/>
+  <testcase name="removeRootWithTwoChild()" classname="advpro.uts.collections.binarytree.BinaryTreeTest" time="0.0"/>
+  <testcase name="searchShouldReturnNullIfNotPresent()" classname="advpro.uts.collections.binarytree.BinaryTreeTest" time="0.212"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
