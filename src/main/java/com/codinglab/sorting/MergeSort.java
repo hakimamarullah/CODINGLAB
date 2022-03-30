@@ -1,8 +1,8 @@
 package com.codinglab.sorting;
 
-public class MergeSort<T extends Comparable<T>> {
+public class MergeSort<T extends Comparable<T>> extends Sort<T>{
 
-    public void mergeSort(T[] arr){
+    private void mergeSort(T[] arr){
         mergeSort(arr,0,arr.length -1);
     }
 
@@ -61,4 +61,11 @@ public class MergeSort<T extends Comparable<T>> {
 
 
     }
+
+    @Override
+    public void sort(T[] array) {
+        mergeSort(array);
+    }
+
+
 }
