@@ -60,6 +60,13 @@ public class Node<T extends Comparable<T>>{
         System.out.print(data + " ");
     }
 
+    public int degree1() {
+        int count = left != null ^ right != null ? 1 : 0;
+        if (left != null) count += left.degree1();
+        if (right != null) count += right.degree1();
+        return count;
+    }
+
     @Override
     public String toString(){
         return String.valueOf(this.data);

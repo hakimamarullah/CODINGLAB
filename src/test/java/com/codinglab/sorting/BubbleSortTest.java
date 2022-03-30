@@ -8,24 +8,24 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
-class MergeSortTest extends SetUp{
+class BubbleSortTest extends SetUp{
+
     @Test
-    void mergeSort() {
+    void bubbleSort() {
         sort.sort(target);
         assertArrayEquals(exp, target);
     }
 
     @Test
-    void mergeSort2() {
+    void bubbleSort2() {
         sort.sort(target);
         assertArrayEquals(exp, target);
     }
 
     @Test
-    void reverseSort(){
+    void reverseBubbleSort(){
         sort.reverseSort(target);
         assertArrayEquals(rev,target);
     }
@@ -33,6 +33,7 @@ class MergeSortTest extends SetUp{
 
     @Override
     Sort<Integer> getInstance() {
-        return new MergeSort<>();
+        return new BubbleSort<>();
     }
+
 }

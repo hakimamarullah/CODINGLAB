@@ -3,7 +3,7 @@ import com.codinglab.collections.doublylinkedlist.DoublyLinkedList;
 import com.codinglab.collections.heap.Heap;
 import com.codinglab.collections.heap.MaxHeap;
 import com.codinglab.collections.heap.MinHeap;
-import com.codinglab.sorting.MergeSort;
+import com.codinglab.sorting.*;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -14,6 +14,7 @@ public class Runner {
 //            maxHeapRunner();
 //            minHeapRunner();
             mergeSortRunner();
+            binTreeRunner();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -21,9 +22,10 @@ public class Runner {
     }
 
     static void mergeSortRunner(){
-        Integer[] a = {5,4,3,2,1};
-        MergeSort<Integer> sort = new MergeSort<>();
-        sort.mergeSort(a);
+        Integer[] a =  {3,2,1,0,-2};
+        System.out.println(a[3].compareTo(a[4]));
+        Sort<Integer> sort = new BubbleSort<>();
+        sort.sort(a);
         System.out.println(Arrays.toString(a));
 
     }
