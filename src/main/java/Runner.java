@@ -3,20 +3,30 @@ import com.codinglab.collections.doublylinkedlist.DoublyLinkedList;
 import com.codinglab.collections.heap.Heap;
 import com.codinglab.collections.heap.MaxHeap;
 import com.codinglab.collections.heap.MinHeap;
+import com.codinglab.sorting.MergeSort;
 
+import java.util.Arrays;
 import java.util.Optional;
 //
 public class Runner {
     public static void main(String[] args) {
         try {
-            maxHeapRunner();
-            minHeapRunner();
+//            maxHeapRunner();
+//            minHeapRunner();
+            mergeSortRunner();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    static void mergeSortRunner(){
+        Integer[] a = {5,4,3,2,1};
+        MergeSort<Integer> sort = new MergeSort<>();
+        sort.mergeSort(a);
+        System.out.println(Arrays.toString(a));
+
+    }
     static void DLLRunner() {
         DoublyLinkedList<Integer> dll = new DoublyLinkedList<>();
 
