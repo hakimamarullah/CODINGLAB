@@ -1,27 +1,27 @@
 package com.codinglab.collections.doublylinkedlist;
 
 
-public class Node<T> {
-    private Node<T> prev, next;
+public class NodeLL<T> {
+    private NodeLL<T> prev, next;
     private T data;
 
-    public Node(T data){
+    public NodeLL(T data){
         this.data = data;
     }
 
-    public Node<T> getPrev() {
+    public NodeLL<T> getPrev() {
         return prev;
     }
 
-    public void setPrev(Node<T> prev) {
+    public void setPrev(NodeLL<T> prev) {
         this.prev = prev;
     }
 
-    public Node<T> getNext() {
+    public NodeLL<T> getNext() {
         return next;
     }
 
-    public void setNext(Node<T> next) {
+    public void setNext(NodeLL<T> next) {
         this.next = next;
     }
 
@@ -33,11 +33,11 @@ public class Node<T> {
         this.data = data;
     }
 
-    public Node<T> next() {
+    public NodeLL<T> next() {
         return this.next;
     }
 
-    public Node<T> prev() {
+    public NodeLL<T> prev() {
         return this.prev;
     }
 }

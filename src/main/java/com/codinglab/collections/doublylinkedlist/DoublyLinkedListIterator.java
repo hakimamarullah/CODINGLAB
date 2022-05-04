@@ -3,7 +3,7 @@ package com.codinglab.collections.doublylinkedlist;
 import java.util.Iterator;
 
 public class DoublyLinkedListIterator<T> implements Iterator<T> {
-    Node<T> current;
+    NodeLL<T> current;
     DoublyLinkedList<T> dll;
 
     public DoublyLinkedListIterator(DoublyLinkedList<T> dll){

@@ -3,7 +3,7 @@ package com.codinglab.collections.binarytree;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-class NodeTest {
+class NodeLLTest {
 
     Node<Integer> node;
     @BeforeEach

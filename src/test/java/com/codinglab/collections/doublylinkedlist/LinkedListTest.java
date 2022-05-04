@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DoublyLinkedListTest {
+class LinkedListTest {
 
     private DoublyLinkedList<Integer> dll;
     @BeforeEach
@@ -121,7 +121,7 @@ class DoublyLinkedListTest {
 
         ArrayList<Integer> expected = new ArrayList<>();
 
-        Node<Integer> curr = dll.getLast();
+        NodeLL<Integer> curr = dll.getLast();
 
         while(curr != null){
             expected.add(curr.getData());

@@ -8,11 +8,11 @@ import java.util.function.Consumer;
 
 public class DoublyLinkedList<T> implements Iterable<T> {
 
-    private Node<T> base, last;
+    private NodeLL<T> base, last;
     private int size;
 
     public DoublyLinkedList() {
-        this.base = new Node<T>(null);
+        this.base = new NodeLL<T>(null);
         last = base;
         size = 0;
 
@@ -20,7 +20,7 @@ public class DoublyLinkedList<T> implements Iterable<T> {
 
     public T getByIndex(int index) throws IndexOutOfBoundsException {
         int counter = 0;
-        Node<T> current = base.getNext();
+        NodeLL<T> current = base.getNext();
 
         if (index >= size) {
             throw new IndexOutOfBoundsException(String
@@ -36,7 +36,7 @@ public class DoublyLinkedList<T> implements Iterable<T> {
     }
 
     public void add(T data) {
-        Node<T> tmp = new Node<T>(data);
+        NodeLL<T> tmp = new NodeLL<T>(data);
         if (base == last) {
             base.setNext(tmp);
             tmp.setPrev(base);
@@ -48,9 +48,9 @@ public class DoublyLinkedList<T> implements Iterable<T> {
         increaseSize();
     }
 
-    public Node<T> get(T data) {
+    public NodeLL<T> get(T data) {
         int counter = 0;
-        Node<T> current = base.getNext();
+        NodeLL<T> current = base.getNext();
 
         while (counter < size && current != null && !current.getData().equals(data)) {
             current = current.getNext();
@@ -61,7 +61,7 @@ public class DoublyLinkedList<T> implements Iterable<T> {
     }
 
     public T remove(T data) throws NoSuchElementException {
-        Node<T> target = get(data);
+        NodeLL<T> target = get(data);
 
         if (target == null) {
             throw new NoSuchElementException();
@@ -81,7 +81,7 @@ public class DoublyLinkedList<T> implements Iterable<T> {
 
         //CASE 3: DELETE INTERMEDIATE NODE
         else if (target.getNext() != null && target.getPrev() != null) {
-            Node<T> tmp = target.getNext();
+            NodeLL<T> tmp = target.getNext();
 
             target.getPrev().setNext(tmp);
             tmp.setPrev(target.getPrev());
@@ -98,7 +98,7 @@ public class DoublyLinkedList<T> implements Iterable<T> {
     }
 
     public void addFirst(T data) {
-        Node<T> tmp = new Node<T>(data);
+        NodeLL<T> tmp = new NodeLL<T>(data);
         if (base == last) {
             base.setNext(tmp);
             tmp.setPrev(base);
@@ -123,12 +123,12 @@ public class DoublyLinkedList<T> implements Iterable<T> {
         this.size--;
     }
 
-    public Node<T> getBase() {
+    public NodeLL<T> getBase() {
         return base;
     }
 
 
-    public Node<T> getLast() {
+    public NodeLL<T> getLast() {
         return last;
     }
 
@@ -147,7 +147,7 @@ public class DoublyLinkedList<T> implements Iterable<T> {
         Iterable.super.forEach(action);
     }
 
-    public Node<T> getFirst() {
+    public NodeLL<T> getFirst() {
         return base.getNext();
     }
 }

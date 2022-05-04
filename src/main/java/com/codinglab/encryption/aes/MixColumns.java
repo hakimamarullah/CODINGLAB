@@ -10,26 +10,28 @@ import java.util.Locale;
  */
 public class MixColumns {
 
-    private static final byte[][] matrix = {{0x03, 0x0b}, {0x01, 0x0d},
+    private static final byte[][] matrix = {
+            {0x03, 0x0b}, {0x01, 0x0d},
             {0x01, 0x09}, {0x02, 0x0e}};
 
     private final byte a, b, c, d;
 
     public static void main(String[] args) {
         MixColumns aes = new MixColumns(false);
-        byte[][] input = {{(byte) 0xdb, 0x47, (byte) 0xa2, (byte) 0xf0},
-                {(byte) 0x13, 0x63, (byte) 0xc5, (byte) 0xf2},
-                {0x53, 0x7c, (byte) 0xf0, (byte) 0xab},
-                {(byte) 0x45, (byte) 0xaf, 0x76, 0x76}
+        byte[][] input = {
+                {(byte) 0xab, (byte) 0xcd, (byte) 0xef, (byte) 0x12},
+                {(byte) 0x34, (byte) 0x90, (byte) 0xab, (byte) 0xcd},
+                {(byte) 0x56, (byte) 0xef, (byte) 0x12, (byte) 0x34},
+                {(byte) 0x78, (byte) 0x56, (byte) 0x78, (byte) 0x90}
         };
-
+        System.out.println("MIX COLUMN");
         for (byte[] x : aes.mixColumns(input)) {
             for (byte y : x) {
                 System.out.print(String.format("%02X", y) + " ");
             }
             System.out.println();
         }
-        System.out.println(tokenizer("1f7331f6ef768be725236c99953e9657".toUpperCase(Locale.ROOT)));
+        System.out.println(tokenizer("CA55E77EB01DFACEBA5EBA11F005BA11".toUpperCase(Locale.ROOT)));
 
     }
 
