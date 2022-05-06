@@ -4,9 +4,7 @@ import com.codinglab.collections.heap.Heap;
 import com.codinglab.collections.heap.MaxHeap;
 import com.codinglab.collections.heap.MinHeap;
 import com.codinglab.encryption.des.DES;
-import com.codinglab.encryption.des.DESTable;
 
-import javax.management.DescriptorRead;
 import java.util.Locale;
 import java.util.Optional;
 //
@@ -42,17 +40,16 @@ public class Runner {
 
     static void DESRunner(){
         DES des = new DES();
-        String hex = "BA5EBA11F005BA11".toUpperCase(Locale.ROOT);
+        String hex = "4CC5D29C563B";
         String bin = des.hexToBin(hex);
-        String pc1 = des.permutePC1(bin);
-//        for(String[] x: des.getSixteenSubKeys(pc1)){
-//            for(String y: x){
-//                System.out.print(y + " Dn ");
-//            }
-//            System.out.println();
-//        }
-        System.out.println(des.initialPermutation(bin));
-//        System.out.println(des.rotateLeft("1001",15));
+
+//        String expand = des.expandR(bin);
+//        System.out.println(des.binToHex(expand));
+        String sboxed = des.transformRXORKeySBox(bin);
+        System.out.println(sboxed.toUpperCase(Locale.ROOT));
+        System.out.println(des.binToHex(des.finalStageFPermutation(des.hexToBin(sboxed))));
+
+
     }
 
     static void binTreeRunner() {

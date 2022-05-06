@@ -1,9 +1,6 @@
 package com.codinglab.encryption.des;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -14,8 +11,10 @@ public class DES {
     int[] ip = DESTable.getInitialPermutationTable();
     int[] pc2 = DESTable.getPC2Table();
     int[] shift = DESTable.getShift();
+    int[] expandRTable = DESTable.getExpansionPermutationTable();
+    int[] permutationFunctionTable = DESTable.getPermutationFunctionTable();
 
-    private void buildMap(){
+    private void buildMap() {
         hexToBinMap.put('0', "0000");
         hexToBinMap.put('1', "0001");
         hexToBinMap.put('2', "0010");
@@ -99,22 +98,43 @@ public class DES {
                 .collect(Collectors.joining());
     }
 
-    public String[][] getSixteenSubKeys(String bin){
+    public String[][] getSixteenSubKeys(String bin) {
         String[] CnDn = divide(bin).split(" ");
         String[][] subKeys = new String[16][2];
 
-        for(int subn=0; subn<shift.length; subn++){
-            subKeys[subn][0] = rotateLeft(CnDn[0],shift[subn]);
-            subKeys[subn][1] = rotateLeft(CnDn[1],shift[subn]);
+        subKeys[0][0] = rotateLeft(CnDn[0], shift[0]);
+        subKeys[1][1] = rotateLeft(CnDn[1], shift[0]);
+
+        for (int subn = 1; subn < shift.length; subn++) {
+            subKeys[subn][0] = rotateLeft(subKeys[subn][0], shift[subn]);
+            subKeys[subn][1] = rotateLeft(subKeys[subn][1], shift[subn]);
         }
         return subKeys;
     }
 
-    public String rotateLeft(String bin, int amount){
-        return bin.substring(amount%bin.length())+bin.substring(0,amount%bin.length());
+    public String expandR(String bin) {
+        String res = "";
+        for (int bit : expandRTable) {
+            res += bin.charAt(bit - 1);
+        }
+        return res;
+
     }
 
-    public String initialPermutation(String bin){
+    public String finalStageFPermutation(String bin) {
+        String res = "";
+        for (int bit : permutationFunctionTable) {
+            res += bin.charAt(bit - 1);
+        }
+        return res;
+
+    }
+
+    public String rotateLeft(String bin, int amount) {
+        return bin.substring(amount % bin.length()) + bin.substring(0, amount % bin.length());
+    }
+
+    public String initialPermutation(String bin) {
         char[] binX = new char[65];
         char[] permuted = new char[65];
         char[] in = bin.toCharArray();
@@ -142,7 +162,7 @@ public class DES {
     public String binToHex(String bin){
         buildMapBin();
         StringBuilder builder = new StringBuilder();
-        ArrayList<String> temp = tokenizeBin(bin);
+        ArrayList<String> temp = tokenizeBin(bin, 4);
 
         for(String bytes: temp){
             builder.append(binToHexMap.get(bytes));
@@ -150,21 +170,53 @@ public class DES {
         return builder.toString();
     }
 
-    private ArrayList<String> tokenizeBin(String bin){
+    public ArrayList<String> tokenizeBin(String bin, int size) {
         ArrayList<String> out = new ArrayList<>();
-        for(int i=0; i<bin.length(); i+=4){
-            out.add(bin.substring(i,i+4));
+        for (int i = 0; i < bin.length(); i += size) {
+            out.add(bin.substring(i, i + size));
         }
         return out;
+    }
+
+    public int sBox(String bin, int sboxNum) {
+        int row = Integer.parseInt(String.valueOf(bin.charAt(0))
+                + bin.charAt(bin.length() - 1), 2);
+        int col = Integer.parseInt(bin.substring(1, bin.length() - 1), 2);
+        return sBoxChooser(sboxNum)[row][col];
+
+    }
+
+    public String transformRXORKeySBox(String bin) {
+        List<String> token = tokenizeBin(bin, 6);
+        String result = "";
+        for (int i = 0; i < 8; i++) {
+            result += Integer.toHexString(sBox(token.get(i), i + 1));
+        }
+        return result;
+    }
+
+    public int[][] sBoxChooser(int num) {
+        return switch (num) {
+            case 1 -> DESTable.getS1();
+            case 2 -> DESTable.getS2();
+            case 3 -> DESTable.getS3();
+            case 4 -> DESTable.getS4();
+            case 5 -> DESTable.getS5();
+            case 6 -> DESTable.getS6();
+            case 7 -> DESTable.getS7();
+            case 8 -> DESTable.getS8();
+            default -> new int[][]{};
+        };
     }
 
 
     public String hexToBin(String hex) {
         buildMap();
+        hex = hex.toUpperCase(Locale.ROOT);
         StringBuilder bin = new StringBuilder();
         char[] hexTemp = hex.toCharArray();
 
-        for(char bit: hexTemp){
+        for (char bit : hexTemp) {
             bin.append(hexToBinMap.get(bit));
         }
         return bin.toString();

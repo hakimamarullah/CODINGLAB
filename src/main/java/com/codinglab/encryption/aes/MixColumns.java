@@ -19,10 +19,10 @@ public class MixColumns {
     public static void main(String[] args) {
         MixColumns aes = new MixColumns(false);
         byte[][] input = {
-                {(byte) 0xab, (byte) 0xcd, (byte) 0xef, (byte) 0x12},
-                {(byte) 0x34, (byte) 0x90, (byte) 0xab, (byte) 0xcd},
-                {(byte) 0x56, (byte) 0xef, (byte) 0x12, (byte) 0x34},
-                {(byte) 0x78, (byte) 0x56, (byte) 0x78, (byte) 0x90}
+                {(byte) 0xBE, (byte) 0x65, (byte) 0x26, (byte) 0x7c},
+                {(byte) 0xBB, (byte) 0x63, (byte) 0x26, (byte) 0x50},
+                {(byte) 0xBC, (byte) 0x6e, (byte) 0x8f, (byte) 0xde},
+                {(byte) 0x85, (byte) 0x67, (byte) 0xa3, (byte) 0x3b}
         };
         System.out.println("MIX COLUMN");
         for (byte[] x : aes.mixColumns(input)) {
@@ -31,7 +31,7 @@ public class MixColumns {
             }
             System.out.println();
         }
-        System.out.println(tokenizer("CA55E77EB01DFACEBA5EBA11F005BA11".toUpperCase(Locale.ROOT)));
+        System.out.println(tokenizer("5A6C730ABCFED7712300784901234567".toUpperCase(Locale.ROOT)));
 
     }
 
